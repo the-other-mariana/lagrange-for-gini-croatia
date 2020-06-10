@@ -1,6 +1,6 @@
 # Lagrange Interpolation Method for Lorenz Curve Approximation
 
-This project consists of a program that calculates the Gini coefficient in the case of Croatia 2018. For the gini calculation, the program first reads from a csv file containing the income distribution by tenths of population. Then, creates the coordinates needed to plot Lorenz curve. The actual Lorenz curve is calculated as a polynomial approximation using Lagrange Interpolation Method with calculated coordinates. The program then calculates the gini coefficient by integrating x minus the lorenz function.
+This project consists of a program that calculates the Gini coefficient in the case of Croatia 2018. For the gini calculation, the program first reads from a csv file containing the income distribution by tenths of population. Then, creates the coordinates needed to plot Lorenz curve. The actual Lorenz curve is calculated as a polynomial approximation using Lagrange Interpolation Method with calculated coordinates. The program then calculates the gini coefficient by integrating x minus the lorenz function. Two other methods are added to calculate gini coefficient, but only for comparison.
 
 ## Specifications
 

@@ -16,11 +16,11 @@ Run `lagrange.py` by typing `python lagrange.py` once located in the project's f
 
 ## Results
 
-The Lorenz curve polynomial approximation through Lagrange Interpolation Method is the following: <br />
+The Lorenz curve polynomial approximation using Lagrange Interpolation Method would the following: <br />
 
 ![alt text](https://github.com/the-other-mariana/lagrange-for-gini-croatia/blob/master/results/lorenz-curve-hrv.png?raw=true)
 
 <br />
-If we plot a line from point to point (gray line) and compare it to the approximated lorenz curve we get: <br />
+If we plot a line from point to point (gray line) and compare it to the approximated lorenz curve (red line) we get: <br />
 
 ![alt text](https://github.com/the-other-mariana/lagrange-for-gini-croatia/blob/master/results/lagrange-vs-data.png?raw=true)

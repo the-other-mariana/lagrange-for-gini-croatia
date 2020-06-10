@@ -1,0 +1,1 @@
+# Lagrange Interpolation Method for Lorenz curve approximation

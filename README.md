@@ -13,3 +13,7 @@ Numpy version: `1.14.1`
 
 Download this folder and store it in your computer.<br />
 Run `lagrange.py` by typing `python lagrange.py` once located in the project's folder. 
+
+## Results
+
+![alt text](https://github.com/the-other-mariana/lagrange-for-gini-croatia/blob/master/results/lorenz-curve-hrv.png?raw=true)

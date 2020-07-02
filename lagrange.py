@@ -3,15 +3,11 @@ import csv
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-from sympy.plotting import plot, PlotGrid
-from sympy import *
-from matplotlib import style
-from matplotlib import cm
 from sympy.plotting.plot import List2DSeries
 from timeit import default_timer as timer
 
 
-style.use('bmh')
+matplotlib.style.use('bmh')
 #seaborn-whitegrid
 #fivethirtyeight
 
@@ -86,8 +82,8 @@ startL = timer()
 MyLagrange = Lagrange(Lx, yPos)
 lorenz = sympy.simplify(MyLagrange)
 equality = X
-areaEquality = integrate(equality, (Symbol('X'), 0, xLimit))
-areaGINI = integrate(equality - lorenz, (Symbol('X'), 0, xLimit))
+areaEquality = sympy.integrate(equality, (sympy.Symbol('X'), 0, xLimit))
+areaGINI = sympy.integrate(equality - lorenz, (sympy.Symbol('X'), 0, xLimit))
 lagGINI = areaGINI / areaEquality
 endL = timer()
 
@@ -162,11 +158,11 @@ print("Time:", timeIt, "seconds")
 print("Accuracy: {:0.2f} %".format(itAccuracy))
 print("------------------------------------")
 
-p1 = plot(lorenz, equality, (X, 0, xLimit), ylim=[0,100],show=False)
+p1 = sympy.plotting.plot(lorenz, equality, (X, 0, xLimit), ylim=[0,100],show=False)
 p1.title = "Lagrange Interpolation for GINI Approximation"
 p1[0].line_color='r'
 
-p2 = plot(lorenz, equality, (X, 0, xLimit), ylim=[0,100],show=False)
+p2 = sympy.plotting.plot(lorenz, equality, (X, 0, xLimit), ylim=[0,100],show=False)
 p2.title = "Lagrange Interpolation vs. Data Set Comparison"
 p2.append(List2DSeries(Lx, yPos))
 p2[2].line_color=(0.5, 0.5, 0.5)
@@ -175,7 +171,7 @@ p2[0].line_color='r'
 finalTime = [timeLagrange, timeIt, timeRiemann]
 labels = ["Lagrange", "Iterative", "Riemann"]
 index = np.arange(len(labels))
-viridis = cm.get_cmap('viridis', 5)
+viridis = matplotlib.cm.get_cmap('viridis', 5)
 bars = plt.bar(index, finalTime, color=viridis.colors[2])
 plt.xlabel('Method for GINI Approximation', fontsize=13)
 plt.ylabel('Time (s)', fontsize=13)

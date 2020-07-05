@@ -31,20 +31,20 @@ Object Type: <class 'sympy.core.mul.Mul'>
 Enclosed Area: 1431.52827736660
 Equality Area: 5000
 GINI Coefficient: 0.286305655473319
-Time: 1.9365902 seconds
+Time: 2.0834643 seconds
 Accuracy: 97.72 %
 ----------------------------------
++++++++++++++ INTEGRATION ++++++++++++
 ------------ RIEMANN ------------
 Enclosed Area: 1431.52825497456
 Equality Area: 5000.50001250012
 GINI Coefficient: 0.286277022576955
-Time: 56.5115652 seconds
+Time: 41.3300952 seconds
 Accuracy: 97.71 %
 ----------------------------------
------------- ITERATIVE ------------
-Enclosed Area: 1408.11278867096
-Equality Area: 5000.50001250012
-GINI Coefficient: 0.281594397590440
-Time: 9.313496299999997 seconds
-Accuracy: 96.11 %
+------------ MONTE CARLO ------------
+Enclosed Area: 1434.4
+GINI Coefficient: 0.286880000000000
+Time: 39.7810149 seconds
+Accuracy: 97.91 %
 ------------------------------------

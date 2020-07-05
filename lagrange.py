@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sympy.plotting.plot import List2DSeries
 from timeit import default_timer as timer
+import random
 
 
 matplotlib.style.use('bmh')
@@ -100,6 +101,7 @@ print("Time:", timeLagrange, "seconds")
 print("Accuracy: {:0.2f} %".format(lagAccuracy))
 print("----------------------------------")
 
+print("+++++++++++++ INTEGRATION ++++++++++++")
 delta = 0.005
 acc = 0.0
 accArea = 0.0
@@ -126,38 +128,34 @@ print("Time:", timeRiemann, "seconds")
 print("Accuracy: {:0.2f} %".format(rieAccuracy))
 print("----------------------------------")
 
-accIt = 0.0
-acc = 0.0
-eqArea = 0.0
+tests = 50000
+inside = 0.0
+areaDomain = 100 * 100
+insidePoints = []
 
-startIt = timer()
-while acc <= xLimit:
-    acc += delta
-    eqArea += delta * (equality.evalf(subs={X:acc - (delta / 2.0)}))
+startMC = timer()
+for i in range(tests):
+    xCoord = random.uniform(0, 100)
+    yCoord = random.uniform(0, 100)
 
-for i in range(len(Lx)):
-    if i < len(Lx) - 1:
-        base = Lx[i + 1] - Lx[i]
-        height = yPos[i + 1] - yPos[i]
-        tri = base * height * 0.5
-        rectHeight = yPos[i]
-        rect = rectHeight * base
-        accIt += rect + tri
+    if yCoord <= equality.evalf(subs={X:xCoord}) and yCoord >= lorenz.evalf(subs={X:xCoord}):
+        inside += 1.0
+        point = [xCoord, yCoord]
+        insidePoints.append(point)
+endMC = timer()
 
-enclosedIt = eqArea - accIt
-itGINI = enclosedIt / eqArea
-endIt = timer()
-timeIt = endIt - startIt
-itAccuracy = abs(100.0 - (abs(GINI_KNOWN - itGINI) / GINI_KNOWN) * 100.0)
-
-print("------------ ITERATIVE ------------")
-print("Enclosed Area:", enclosedIt)
-print("Equality Area:", eqArea)
-print("GINI Coefficient:", itGINI)
-print("Time:", timeIt, "seconds")
-print("Accuracy: {:0.2f} %".format(itAccuracy))
+timeMC = endMC - startMC
+MonteCarloArea = (inside / tests) * areaDomain
+mcGINI = MonteCarloArea / areaEquality
+mcAccuracy = abs(100.0 - (abs(GINI_KNOWN - mcGINI) / GINI_KNOWN) * 100.0)
+print("------------ MONTE CARLO ------------")
+print("Enclosed Area:", MonteCarloArea)
+print("GINI Coefficient:", mcGINI)
+print("Time:", timeMC, "seconds")
+print("Accuracy: {:0.2f} %".format(mcAccuracy))
 print("------------------------------------")
 
+# Plots
 p1 = sympy.plotting.plot(lorenz, equality, (X, 0, xLimit), ylim=[0,100],show=False)
 p1.title = "Lagrange Interpolation for GINI Approximation"
 p1[0].line_color='r'
@@ -168,15 +166,25 @@ p2.append(List2DSeries(Lx, yPos))
 p2[2].line_color=(0.5, 0.5, 0.5)
 p2[0].line_color='r'
 
-finalTime = [timeLagrange, timeIt, timeRiemann]
-labels = ["Lagrange", "Iterative", "Riemann"]
+
+finalTime = [timeLagrange, timeMC, timeRiemann]
+labels = ["Python", "Monte Carlo", "Riemann"]
 index = np.arange(len(labels))
 viridis = matplotlib.cm.get_cmap('viridis', 5)
 bars = plt.bar(index, finalTime, color=viridis.colors[2])
-plt.xlabel('Method for GINI Approximation', fontsize=13)
+plt.xlabel('Method for Polynomial Integration', fontsize=13)
 plt.ylabel('Time (s)', fontsize=13)
 plt.xticks(index, labels, fontsize=8, rotation=0)
 plt.title('Time Performance Comparison')
+
+# For Monte Carlo visualization
+'''
+xx = np.linspace(0, 100, 1000)
+yy = sympy.lambdify(X, [equality, lorenz])(xx)
+plt.plot(xx, np.transpose(yy))
+for i in range(len(insidePoints)):
+    plt.plot(insidePoints[i][0], insidePoints[i][1], color='red', marker='o')
+'''
 
 p1.show()
 p2.show()

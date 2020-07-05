@@ -26,3 +26,9 @@ The Lorenz curve polynomial approximation using Lagrange Interpolation Method is
 If we plot a line from point to point (gray line) and compare it to the approximated lorenz curve (red line) we get: <br />
 
 ![alt text](https://github.com/the-other-mariana/lagrange-for-gini-croatia/blob/master/results/lagrange-vs-data.png?raw=true)
+
+## Further Experiments
+
+Additionally and outside of the projects strict boundaries, the method for integrating the Lorenz curve in order to get the Gini coefficent were three: Sympy's `integrate` function, Monte Carlo simulation and Riemann Sums. The following plot is the resulting time performance of these three. Interestingly, Monte Carlo simulation showed the most accurate result, with 97.91% of accuracy.
+
+![alt text](https://github.com/the-other-mariana/lagrange-for-gini-croatia/blob/master/results/performance-hrv.png?raw=true)

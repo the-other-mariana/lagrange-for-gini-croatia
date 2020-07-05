@@ -167,6 +167,7 @@ p2[2].line_color=(0.5, 0.5, 0.5)
 p2[0].line_color='r'
 
 
+# Time Performance visualization
 finalTime = [timeLagrange, timeMC, timeRiemann]
 labels = ["Python", "Monte Carlo", "Riemann"]
 index = np.arange(len(labels))
@@ -177,13 +178,30 @@ plt.ylabel('Time (s)', fontsize=13)
 plt.xticks(index, labels, fontsize=8, rotation=0)
 plt.title('Time Performance Comparison')
 
-# For Monte Carlo visualization
 '''
+# For Monte Carlo visualization
+
 xx = np.linspace(0, 100, 1000)
 yy = sympy.lambdify(X, [equality, lorenz])(xx)
 plt.plot(xx, np.transpose(yy))
 for i in range(len(insidePoints)):
     plt.plot(insidePoints[i][0], insidePoints[i][1], color='red', marker='o')
+'''
+'''
+# For Riemann visualization
+xx = np.linspace(0, 100, 1000)
+yy = sympy.lambdify(X, [equality, lorenz])(xx)
+plt.plot(xx, np.transpose(yy))
+
+f = sympy.lambdify(X, lorenz)
+a = 0; b = 100; N = 10
+n = 10
+x = np.linspace(a,b,N+1)
+y = f(x)
+x_mid = (x[:-1] + x[1:])/2 # midpoints
+y_mid = f(x_mid)
+plt.bar(x_mid,y_mid,width=(b-a)/N,alpha=0.2,edgecolor='b')
+plt.title('Midpoint Riemann Sum, N = {}'.format(N))
 '''
 
 p1.show()

@@ -35,6 +35,6 @@ Additionally and outside of the projects strict boundaries, the method for integ
 
 Monte Carlo Simulation is presented here, where the amount of tests varies to see how it works. <br />
 
-![alt text](https://github.com/the-other-mariana/lagrange-for-gini-croatia/blob/master/results/monte-carlo-gif.gif) <br />
+![alt text](https://github.com/the-other-mariana/lagrange-for-gini-croatia/blob/master/results/monte-carlo-gif2.gif) <br />
 
 Making this project made me so happy.<br />

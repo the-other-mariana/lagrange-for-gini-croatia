@@ -132,6 +132,14 @@ tests = 50000
 inside = 0.0
 areaDomain = 100 * 100
 insidePoints = []
+outsidePoints = []
+
+# For Monte Carlo visualization
+'''
+xx = np.linspace(0, 100, 1000)
+yy = sympy.lambdify(X, [equality, lorenz])(xx)
+plt.plot(xx, np.transpose(yy))
+'''
 
 startMC = timer()
 for i in range(tests):
@@ -142,6 +150,18 @@ for i in range(tests):
         inside += 1.0
         point = [xCoord, yCoord]
         insidePoints.append(point)
+        #plt.plot(point[0], point[1], color='red', marker='o')
+    '''
+    # For Monte Carlo visualization
+    else:
+        point = [xCoord, yCoord]
+        outsidePoints.append(point)
+        plt.plot(point[0], point[1], color='blue', marker='o')
+
+    if i == 10 or i == 50 or i == 100 or i == 500 or i == 1000 or i == 5000:
+        plt.title('T = {}'.format(i))
+        plt.savefig("T_{}.png".format(i),bbox_inches='tight')
+    '''
 endMC = timer()
 
 timeMC = endMC - startMC
@@ -178,15 +198,7 @@ plt.ylabel('Time (s)', fontsize=13)
 plt.xticks(index, labels, fontsize=8, rotation=0)
 plt.title('Time Performance Comparison')
 
-'''
-# For Monte Carlo visualization
 
-xx = np.linspace(0, 100, 1000)
-yy = sympy.lambdify(X, [equality, lorenz])(xx)
-plt.plot(xx, np.transpose(yy))
-for i in range(len(insidePoints)):
-    plt.plot(insidePoints[i][0], insidePoints[i][1], color='red', marker='o')
-'''
 '''
 # For Riemann visualization
 xx = np.linspace(0, 100, 1000)
@@ -201,7 +213,7 @@ y = f(x)
 x_mid = (x[:-1] + x[1:])/2 # midpoints
 y_mid = f(x_mid)
 plt.bar(x_mid,y_mid,width=(b-a)/N,alpha=0.2,edgecolor='b')
-plt.title('Midpoint Riemann Sum, N = {}'.format(N))
+#plt.title('Midpoint Riemann Sum, N = {}'.format(N))
 '''
 
 p1.show()

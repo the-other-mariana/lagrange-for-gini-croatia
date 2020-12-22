@@ -13,8 +13,9 @@ Numpy version: `1.14.1`
 
 ## Usage
 
-Download this folder and store it in your computer.<br />
-Run `lagrange.py` by typing `python lagrange.py` once located in the project's folder. 
+1. Download this repo and store it in your computer.<br />
+2. Go to the folder's directory where the repo is stored.<br />
+3. Run `lagrange.py` by typing in Powershell: `python lagrange.py`, once located in the project's directory. 
 
 ## Results
 
@@ -33,7 +34,7 @@ Additionally and outside of the projects strict boundaries, the method for integ
 
 ![alt text](https://github.com/the-other-mariana/lagrange-for-gini-croatia/blob/master/results/performance-hrv.png?raw=true)
 
-Monte Carlo Simulation is presented here, where the amount of tests varies to see how it works. <br />
+Monte Carlo Simulation is presented here in order to integrate the Lorenz Curve and get the Gini Coefficient, where the amount of tests increases to show how it works. <br />
 
 ![alt text](https://github.com/the-other-mariana/lagrange-for-gini-croatia/blob/master/results/monte-carlo-gif2.gif) <br />
 
